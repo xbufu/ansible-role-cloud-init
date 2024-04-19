@@ -1,0 +1,14 @@
+---
+- name: Wait for cloud-init
+  ansible.builtin.wait_for:
+    path: /var/lib/cloud/instance/boot-finished
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install VM tools
+  ansible.builtin.include_tasks: install-vmtools.yml
+
+- name: Prepare cloud-init
+  ansible.builtin.include_tasks: cloud-init.yml
+
+- name: Clean up system for template use
+  ansible.builtin.include_tasks: clean.yml
