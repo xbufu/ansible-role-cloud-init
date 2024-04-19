@@ -4,9 +4,6 @@
     path: /var/lib/cloud/instance/boot-finished
   when: ansible_distribution == "Ubuntu"
 
-- name: Install VM tools
-  ansible.builtin.include_tasks: install-vmtools.yml
-
 - name: Prepare cloud-init
   ansible.builtin.include_tasks: cloud-init.yml
 
